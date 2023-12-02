@@ -10,11 +10,11 @@ import "jquery"
 
 $(document).on("change", "#user_type_user", function(){
   var selected_option = $(this).val();
-  if (selected_option == "Преподаватель"){
+  if (selected_option == 1){
     $(".codefield").show();
+    $(".group_num").hide();
   } else {
+    $(".group_num").show();
     $(".codefield").hide();
   }
 })
-
-console.log($)

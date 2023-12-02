@@ -12,10 +12,12 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_12_01_165959) do
   create_table "users", force: :cascade do |t|
+    t.string "surname", null: false
     t.string "name", null: false
+    t.string "patronymic"
     t.string "email", null: false
     t.string "password_digest", null: false
-    t.string "group", null: false
+    t.string "group"
     t.integer "type_user", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
