@@ -1,3 +1,20 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
+//= require jquery3
+//= require jquery-ujs
+//= require_tree
+import "jquery"
+// import "script"
+
+
+$(document).on("change", "#user_type_user", function(){
+  var selected_option = $(this).val();
+  if (selected_option == "Преподаватель"){
+    $(".codefield").show();
+  } else {
+    $(".codefield").hide();
+  }
+})
+
+console.log($)

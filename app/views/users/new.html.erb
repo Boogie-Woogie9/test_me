@@ -1,3 +1,31 @@
-<% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
-<p>This will be a signup page for new users.</p>
+<% provide(:title, 'Регистрация') %>
+<h1>Регистрация</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+      <%= f.label :"Имя" %>
+      <%= f.text_field :name %>
+      <%= f.label :"Электронная почта" %>
+      <%= f.email_field :email %>
+      <%= f.label :"Пароль" %>
+      <%= f.password_field :password %>
+      <%= f.label :password_confirmation, "Подтвердите пароль" %>
+      <%= f.password_field :password_confirmation %>
+      <%= f.label :type_user, "Выберите тип учетной записи" %>      
+      <%= f.select :type_user, ["Студент", "Преподаватель", "Администратор"] %>
+      <div class="codefield d-none">
+        <%= f.label :type_user, "Введите специальный код" %> 
+        <%= f.text_field :type_user %>
+      </div>
+<%# <script language="javascript">
+  $('#selector').change(function(event){
+    if($('#user_type_user').val() === 'Преподаватель') {
+      $('#codefield').removeClass('hidden');
+    }
+  });
+</script> %>
+
+      <%= f.submit "Создать аккаунт", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
