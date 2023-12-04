@@ -6,6 +6,7 @@ import "controllers"
 //= require_tree
 import "jquery"
 // import "script"
+//= require bootstrap
 
 
 $(document).on("change", "#user_type_user", function(){
