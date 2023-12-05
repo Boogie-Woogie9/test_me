@@ -1,20 +1,20 @@
-class UsersController < ApplicationController
-  # before_save :setType
-  # @tutor_code = 'K155F34'
+# frozen_string_literal: true
+
+# контроллер для студентов
+class StudentsController < ApplicationController
   def show
-    @user = User.find(params[:id])
+    @student = Student.find(params[:id])
   end
 
   def new
-    @user = User.new
+    @student = Student.new
   end
 
   def create
-    # setType()
-    @user = User.new(user_params)
-    if @user.save
+    @student = Student.new(student_params)
+    if @student.save
       flash[:success] = 'Добро пожаловать в TestMe :)!'
-      redirect_to @user
+      redirect_to @student
     else
       render 'new'
     end
@@ -22,16 +22,15 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(
+  def student_params
+    params.require(:student).permit(
       :surname,
       :name,
-      :patronymic,
       :email,
       :password,
       :password_confirmation,
-      :type_user,
-      :group)
+      :group
+    )
   end
 end
 # "surname"=>"Евсеенков",

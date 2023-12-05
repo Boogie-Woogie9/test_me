@@ -3,10 +3,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
-      log_in user
-      redirect_to user        # Осуществить вход пользователя и переадресовать на страницу профиля.
+    student = Student.find_by(email: params[:session][:email].downcase)
+    if student && student.authenticate(params[:session][:password])
+      log_in student
+      redirect_to student        # Осуществить вход пользователя и переадресовать на страницу профиля.
     else
       # Создать сообщение об ошибке.
       render 'new'

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-# model for User
-class User < ApplicationRecord
+# model for Student
+class Student < ApplicationRecord
+  belongs_to :group
   attr_accessor :remember_token
 
   before_save { self.email = email.downcase }
@@ -32,7 +33,7 @@ class User < ApplicationRecord
   end
 
   def remember
-    self.remember_token = User.new_token
-    update_attribute(:remember_digest, User.digest(remember_token))
+    self.remember_token = Student.new_token
+    update_attribute(:remember_digest, Student.digest(remember_token))
   end
 end

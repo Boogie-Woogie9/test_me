@@ -1,13 +1,19 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   get 'sessions/new'
-  get 'users/new'
+  get 'students/new'
+  get 'mentors/new'
+
   root 'static_pages#home'
   get 'help' => 'static_pages#help'
   get 'about' => 'static_pages#about'
   get 'contact' => 'static_pages#contact'
 
-  resources :users
-  get 'signup' => 'users#new'
+  resources :students
+  get 'signup' => 'students#new'
+  resources :mentors
+  get 'signup' => 'mentors#new'
 
   get 'login'  => 'sessions#new'
   post 'login' => 'sessions#create'
