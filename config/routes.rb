@@ -1,6 +1,16 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  # devise_for :views
+  devise_for :mentors, controllers: {
+    sessions: 'mentors/sessions',
+    registrations: 'mentors/registrations'
+  }
+
+  devise_for :students, controllers: {
+    sessions: 'students/sessions',
+    registrations: 'students/registrations'
+  }
   get 'sessions/new'
   get 'students/new'
   get 'mentors/new'
@@ -9,6 +19,7 @@ Rails.application.routes.draw do
   get 'help' => 'static_pages#help'
   get 'about' => 'static_pages#about'
   get 'contact' => 'static_pages#contact'
+  get 'choice' => 'static_pages#choice'
 
   resources :students
   get 'signup' => 'students#new'

@@ -1,0 +1,29 @@
+<% provide(:title, 'Регистрация') %>
+<h1 class="center">Регистрация</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { data: { turbo: false }}) do |f| %>
+      <%= render "students/shared/error_messages", resource: resource %>
+    
+      <%= f.label :"Фамилия" %>
+      <%= f.text_field :surname, autofocus: true, class: 'form-control' %>
+
+      <%= f.label :"Имя" %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :"Электронная почта" %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :"Пароль" %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :password_confirmation, "Подтвердите пароль" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+      <%= f.label :study_group, "Выберите группу" %>
+      <%= f.select :study_group, options_from_collection_for_select(Group.all.each(), :id, :group_name) %>
+
+      <%= f.submit "Создать аккаунт", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
-# model for Student
+# model for mentors
 class Mentor < ApplicationRecord
-  has_many :groups
-  # class_name: "group", foreign_key: "reference_id"
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+  has_and_belongs_to_many :groups
   attr_accessor :remember_token
 
   before_save { self.email = email.downcase }
@@ -14,27 +17,7 @@ class Mentor < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
 
-  has_secure_password
+  # has_secure_password
   validates :password, length: { minimum: 8 }
   validates :groups, presence: true
-
-  # Возвращает дайджест для указанной строки.
-  def self.digest(string)
-    cost = if ActiveModel::SecurePassword.min_cost
-             BCrypt::Engine::MIN_COST
-           else
-             BCrypt::Engine.cost
-           end
-    BCrypt::Password.create(string, cost:)
-  end
-
-  # Возвращает случайный токен.
-  def self.new_token
-    SecureRandom.urlsafe_base64
-  end
-
-  def remember
-    self.remember_token = Mentor.new_token
-    update_attribute(:remember_digest, Mentor.digest(remember_token))
-  end
 end

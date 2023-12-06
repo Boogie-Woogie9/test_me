@@ -5,21 +5,31 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Help", help_path %></li>
-      <% if logged_in? %>
-        <li><%= link_to "Users", '#' %></li>
+
+      <% if current_student %>
         <li class="dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-          Account <b class="caret"></b>
-        </a>
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Account<b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li class="dropdown-item"><%= link_to "Profile", current_user %></li>
-            <li class="dropdown-item"><%= link_to "Settings", '#' %></li>
+            <li class="dropdown-item"><%= link_to "Profile", current_student %></li>
+            <li class="dropdown-item"><%= link_to "Settings", edit_student_registration_path %></li>
             <li class="divider"></li>
-            <li class="dropdown-item"><%= link_to "Log out", logout_path, method: "delete" %></li>
+            <li class="dropdown-item"><%= link_to "Sign out", destroy_student_session_path, method: "delete" %></li>
           </ul>
         </li>
-      <% else %>
-        <li><%= link_to "Log in", login_path %></li>
+
+      <% elsif current_mentor %>
+      <li class="dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Account<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item"><%= link_to "Profile", current_mentor %></li>
+            <li class="dropdown-item"><%= link_to "Settings", edit_mentor_registration_path %></li>
+            <li class="divider"></li>
+            <li class="dropdown-item"><%= link_to "Sign out", destroy_mentor_session_path, method: "delete" %></li>
+          </ul>
+        </li>
+      <% else %> 
+        <li><%= link_to "Sign Up", choice_path %></li>
+        <li><%= link_to "Sign In", new_student_session_path %></li>
       <% end %>
       </ul>
     </nav>

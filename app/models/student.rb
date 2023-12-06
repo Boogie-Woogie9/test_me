@@ -2,6 +2,10 @@
 
 # model for Student
 class Student < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
   belongs_to :group
   attr_accessor :remember_token
 
@@ -13,27 +17,26 @@ class Student < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
 
-  has_secure_password
   validates :password, length: { minimum: 8 }
-  validates :group, presence: true
+  validates :study_group, presence: true
 
-  # Возвращает дайджест для указанной строки.
-  def self.digest(string)
-    cost = if ActiveModel::SecurePassword.min_cost
-             BCrypt::Engine::MIN_COST
-           else
-             BCrypt::Engine.cost
-           end
-    BCrypt::Password.create(string, cost:)
-  end
+  # # Возвращает дайджест для указанной строки.
+  # def self.digest(string)
+  #   cost = if ActiveModel::SecurePassword.min_cost
+  #            BCrypt::Engine::MIN_COST
+  #          else
+  #            BCrypt::Engine.cost
+  #          end
+  #   BCrypt::Password.create(string, cost:)
+  # end
 
-  # Возвращает случайный токен.
-  def self.new_token
-    SecureRandom.urlsafe_base64
-  end
+  # # Возвращает случайный токен.
+  # def self.new_token
+  #   SecureRandom.urlsafe_base64
+  # end
 
-  def remember
-    self.remember_token = Student.new_token
-    update_attribute(:remember_digest, Student.digest(remember_token))
-  end
+  # def remember
+  #   self.remember_token = Student.new_token
+  #   update_attribute(:remember_digest, Student.digest(remember_token))
+  # end
 end
