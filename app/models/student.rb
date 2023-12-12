@@ -18,7 +18,7 @@ class Student < ApplicationRecord
                     uniqueness: { case_sensitive: false }
 
   validates :password, length: { minimum: 8 }
-  validates :study_group, presence: true
+  validates :group, presence: true
 
   # # Возвращает дайджест для указанной строки.
   # def self.digest(string)

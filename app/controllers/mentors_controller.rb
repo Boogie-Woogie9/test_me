@@ -28,8 +28,7 @@ class MentorsController < ApplicationController
       :name,
       :email,
       :password,
-      :password_confirmation,
-      :groups
+      :password_confirmation
     )
   end
 end

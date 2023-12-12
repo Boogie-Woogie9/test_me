@@ -18,9 +18,7 @@ class Students::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     create_params = sign_up_params
-    create_params[:study_group] = create_params[:study_group].to_i
-    puts "###########{create_params[:study_group].class}##########"
-    puts 
+    create_params[:group_id] = create_params[:group_id].to_i
 
     @student = Student.new(create_params)
     if @student.save
@@ -59,7 +57,7 @@ class Students::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[surname name email
-      password password_confirmation study_group])
+      password password_confirmation group_id])
   end
 
   # If you have extra params to permit, append them to the sanitizer.

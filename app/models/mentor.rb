@@ -19,5 +19,5 @@ class Mentor < ApplicationRecord
 
   # has_secure_password
   validates :password, length: { minimum: 8 }
-  validates :groups, presence: true
+  # validates :groups, presence: true
 end

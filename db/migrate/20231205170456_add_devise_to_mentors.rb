@@ -8,15 +8,13 @@ class AddDeviseToMentors < ActiveRecord::Migration[7.0]
       t.string :name, null: false                               # имя
       t.string :email, null: false, unique: true                # электронная почта (логин)
       t.string :encrypted_password, null: false                 # пароль (зашифрованный)
-      # t.string :remember_digest                               # вход с запоминанием
-      t.integer :groups, array: true, default: []               # номер группы (у студента)
 
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
 
       ## Rememberable
-      # t.datetime :remember_created_at
+      t.datetime :remember_created_at
 
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false
@@ -38,10 +36,10 @@ class AddDeviseToMentors < ActiveRecord::Migration[7.0]
 
 
       # Uncomment below if timestamps were not included in your original model.
-      # t.timestamps null: false
+      t.timestamps null: false
     end
 
-    # add_index :mentors, :email,                unique: true
+    add_index :mentors, :email,                unique: true
     add_index :mentors, :reset_password_token, unique: true
     # add_index :mentors, :confirmation_token,   unique: true
     # add_index :mentors, :unlock_token,         unique: true

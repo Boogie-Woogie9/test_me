@@ -15,10 +15,13 @@ Rails.application.routes.draw do
   get 'students/new'
   get 'mentors/new'
 
+  match 'mentors/:id' => 'mentors#destroy', :via => :delete, :as => :destroy_mentor
+  match 'students/:id' => 'students#destroy', :via => :delete, :as => :destroy_student
+
   root 'static_pages#home'
   get 'help' => 'static_pages#help'
   get 'about' => 'static_pages#about'
-  get 'contact' => 'static_pages#contact'
+  # get 'contact' => 'static_pages#contact'
   get 'choice' => 'static_pages#choice'
 
   resources :students
@@ -26,11 +29,12 @@ Rails.application.routes.draw do
   resources :mentors
   get 'signup' => 'mentors#new'
 
-  get 'login'  => 'sessions#new'
-  post 'login' => 'sessions#create'
-  get 'logout' => 'sessions#destroy'
+  # get 'login'  => 'sessions#new'
+  # post 'login' => 'sessions#create'
+  # get 'logout' => 'sessions#destroy'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
 
   # Defines the root path route ("/")
   # root "articles#index"

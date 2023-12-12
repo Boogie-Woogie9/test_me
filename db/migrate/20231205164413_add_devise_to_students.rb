@@ -8,8 +8,7 @@ class AddDeviseToStudents < ActiveRecord::Migration[7.0]
       t.string :name, null: false                               # имя
       t.string :email, null: false, unique: true                # электронная почта (логин)
       t.string :encrypted_password, null: false                 # пароль (зашифрованный)
-      t.string :remember_digest                                 # вход с запоминанием
-      t.integer :study_group                                    # номер группы (у студента)
+      # t.string :remember_digest                                 # вход с запоминанием
 
       ## Recoverable
       t.string   :reset_password_token

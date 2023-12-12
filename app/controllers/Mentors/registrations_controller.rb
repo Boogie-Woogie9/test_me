@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Mentors::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -10,9 +10,16 @@ class Mentors::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    @mentor = Mentor.new(sign_up_params)
+    if @mentor.save
+      sign_in(@mentor)
+      flash[:success] = 'Добро пожаловать в TestMe :)!'
+      redirect_to after_sign_in_path_for(@mentor)
+    else
+      render 'new'
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -25,9 +32,11 @@ class Mentors::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+    @mentor = Mentor.find(params[:id])
+    @mentor.destroy
+    redirect_to root_path, notice: 'Учетная запись удалена'
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
@@ -38,22 +47,24 @@ class Mentors::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[surname name email
+      password password_confirmation
+    ])
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[surname name])
+  end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_up_path_for(_resource)
+    new_page_path
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)

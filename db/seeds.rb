@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+Group.create!(group_name: "ИУ6-51Б")
+Group.create!(group_name: "ИУ6-52Б")
+Group.create!(group_name: "ИУ6-53Б")
