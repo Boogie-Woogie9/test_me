@@ -10,6 +10,12 @@ class MentorsController < ApplicationController
     @mentor = Mentor.new
   end
 
+  def destroy
+    redirect_to root_path, notice: 'Ваш аккаунт успешно удален.'
+    @mentor = Mentor.find(params[:id])
+    @mentor.destroy
+  end
+
   def create
     @mentor = Mentor.new(mentor_params)
     if @mentor.save

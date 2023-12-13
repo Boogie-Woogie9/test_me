@@ -12,7 +12,7 @@ class AddDeviseToStudents < ActiveRecord::Migration[7.0]
 
       ## Recoverable
       t.string   :reset_password_token
-      # t.datetime :reset_password_sent_at
+      t.datetime :reset_password_sent_at
 
       ## Rememberable
       t.datetime :remember_created_at
@@ -35,12 +35,11 @@ class AddDeviseToStudents < ActiveRecord::Migration[7.0]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-
       # Uncomment below if timestamps were not included in your original model.
-      # t.timestamps null: false
+      t.timestamps null: false
     end
 
-    # add_index :students, :email,                unique: true
+    add_index :students, :email,                unique: true
     add_index :students, :reset_password_token, unique: true
     # add_index :students, :confirmation_token,   unique: true
     # add_index :students, :unlock_token,         unique: true

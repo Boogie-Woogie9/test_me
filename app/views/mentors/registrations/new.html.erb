@@ -27,16 +27,17 @@
         </div>
         <div class="col-sm-6">
           <%= f.label :password_confirmation, "Подтвердите пароль" %>
-          <%= f.password_field :password_confirmation, class: 'form-control' %>    
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
         </div>
       </div>
-
-      <div class="submit-btn">
-        <%= f.submit "Создать аккаунт", class: "btn btn-primary" %>
-      </div>
-    <% end %>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="submit-btn">
+            <%= f.submit "Создать аккаунт", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+        </div>
+        <%= render "mentors/shared/links" %>
+    </div>
   </div>
 </div>
-
-
-<%= render "mentors/shared/links" %>

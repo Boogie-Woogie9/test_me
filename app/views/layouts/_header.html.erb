@@ -1,42 +1,41 @@
 <header class="navbar fixed-top navbar-expand-lg navbar-inverse">
   <div class="container">
-  <%= link_to "test_me", root_path, id: "logo" %>
+    <%= link_to "test_me", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Домой", root_path %></li>
         <li><%= link_to "Q&A", help_path %></li>
-
-      <% if student_signed_in? %>
-        <li class="dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">"#{current_student[:name]} #{current_student[:surname]}"</a>
-          <ul class="dropdown-menu">
-            <li class="dropdown-item"><%= link_to "Профиль", current_student %></li>
-            <li class="dropdown-item"><%= link_to "Настройки", edit_student_registration_path %></li>
-            <li class="divider"></li>
-            <li class="dropdown-item"><%= button_to "Выйти", destroy_student_session_path, :class => "btn btn-outline-danger", method: "delete" %></li>
+        <% if student_signed_in? %>
+          <li class="dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><%="#{current_student[:name]} #{current_student[:surname]}"%></a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><%= link_to "Профиль", current_student %></li>
+              <li class="dropdown-item"><%= link_to "Настройки", edit_student_registration_path %></li>
+              <li class="divider"></li>
+              <li class="dropdown-item"><%= button_to "Выйти", destroy_student_session_path, :class => "btn btn-outline-danger", method: "delete" %></li>
+            </ul>
+          </li>
+        <% elsif mentor_signed_in? %>
+          <li class="dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><%="#{current_mentor[:name]} #{current_mentor[:surname]}"%></a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><%= link_to "Профиль", current_mentor %></li>
+              <li class="dropdown-item"><%= link_to "Настройки", edit_mentor_registration_path %></li>
+              <li class="divider"></li>
+              <li class="dropdown-item"><%= button_to "Выйти", destroy_mentor_session_path, :class => "btn btn-outline-danger", method: "delete" %></li>
+            </ul>
+          </li>
+        <% elsif !student_signed_in? || !mentor_signed_in? %>
+          <li><%= link_to "Создать аккаунт", choice_path %></li>
+          <li class="dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Войти как</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><%= link_to "Студент", new_student_session_path %></li>
+              <li class="dropdown-item"><%= link_to "Преподаватель", new_mentor_session_path %></li>
+            </ul>
+            <li>
+            <% end %>
           </ul>
-        </li>
-      <% elsif mentor_signed_in? %>
-      <li class="dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%="#{current_mentor[:name]} #{current_mentor[:surname]}"%></a>
-          <ul class="dropdown-menu">
-            <li class="dropdown-item"><%= link_to "Профиль", current_mentor %></li>
-            <li class="dropdown-item"><%= link_to "Настройки", edit_mentor_registration_path %></li>
-            <li class="divider"></li>
-            <li class="dropdown-item"><%= button_to "Выйти", destroy_mentor_session_path, :class => "btn btn-outline-danger", method: "delete" %></li>
-          </ul>
-        </li>
-      <% elsif !student_signed_in? || !mentor_signed_in? %> 
-      <li><%= link_to "Создать аккаунт", choice_path %></li>
-      <li class="dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Войти как</a>
-          <ul class="dropdown-menu">
-            <li class="dropdown-item"><%= link_to "Студент", new_student_session_path %></li>
-            <li class="dropdown-item"><%= link_to "Преподаватель", new_mentor_session_path %></li>
-          </ul>
-      <li>
-      <% end %>
-      </ul>
-    </nav>
-  </div>
-</header>
+        </nav>
+      </div>
+    </header>

@@ -1,4 +1,8 @@
-<div class="grid-co">
-  <div class="grid-item"><%= link_to "Студент", new_student_registration_path, :class => "btn btn-primary" %></div>
-  <div class="grid-item"><%= link_to "Преподаватель", new_mentor_registration_path, :class => "btn btn-primary" %></div>
+<div class="row">
+  <div class="col-sm-6"></div>
+  <div class="col-sm-6"></div>
+</div>
+<div class="row">
+  <div class="col-sm-6 student_btn"><%= link_to "Студент", new_student_registration_path, class: "btn btn-primary" %></div>
+  <div class="col-sm-6 mentor_btn"><%= link_to "Преподаватель", new_mentor_registration_path, class: "btn btn-primary" %></div>
 </div>

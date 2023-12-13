@@ -68,13 +68,10 @@ footer small {
   float: left;
 }
 
-// флэш-сообщения
-.d-none{
-  display: none;
-}
-
 #error_explanation {
   color: red;
+  background-color: rgba(255, 0, 0, 0.3);
+  padding: 5px;
 }
 ul {
   color: red;
@@ -90,4 +87,10 @@ ul {
 .submit-btn {
   padding-top: 10px;
   max-width: min-content;
+}
+
+.img1  {
+  background: {
+      image: asset-url('minus.jpg');
+  }
 }

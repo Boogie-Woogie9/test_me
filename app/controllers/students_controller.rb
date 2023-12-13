@@ -10,6 +10,12 @@ class StudentsController < ApplicationController
     @student = Student.new
   end
 
+  def destroy
+    redirect_to root_path, notice: 'Ваш аккаунт успешно удален.'
+    @student = Student.find(params[:id])
+    @student.destroy
+  end
+
   def create
     @student = Student.new(student_params)
     if @student.save

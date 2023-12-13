@@ -46,7 +46,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_06_211248) do
     t.string "email", null: false
     t.string "encrypted_password", null: false
     t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["group_id"], name: "index_students_on_group_id"
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end

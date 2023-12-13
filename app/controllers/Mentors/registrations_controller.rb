@@ -32,11 +32,28 @@ class Mentors::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
+  # def destroy
+  #   @mentor = Mentor.find(params[:id])
+  #   @mentor.destroy
+  #   redirect_to root_path, notice: 'Учетная запись удалена'
+  # end
+  # def destroy
+  #   log_out @mentor
+  #   @user.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to login_path, notice: 'user was successfully destroyed.' }
+  #   end
+  # end
   def destroy
-    @mentor = Mentor.find(params[:id])
+    redirect_to destroy_mentor_session_path, notice: 'Ваш аккаунт успешно удален.'
+    @mentor = Mentor.find(params[:id.to_i])
     @mentor.destroy
-    redirect_to root_path, notice: 'Учетная запись удалена'
   end
+  # def destroy
+  #   current_mentor.destroy
+  #   sign_out(current_mentor)
+  #   redirect_to root_path, notice: 'Ваш аккаунт успешно удален.'
+  # end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

@@ -15,8 +15,9 @@ Rails.application.routes.draw do
   get 'students/new'
   get 'mentors/new'
 
-  match 'mentors/:id' => 'mentors#destroy', :via => :delete, :as => :destroy_mentor
-  match 'students/:id' => 'students#destroy', :via => :delete, :as => :destroy_student
+  # delete 'destroy_mentor' => 'mentors#destroy'
+  # delete 'destroy_student' => 'students#destroy'
+  # match 'students/:id' => 'students#destroy', :via => :delete, :as => :destroy_student
 
   root 'static_pages#home'
   get 'help' => 'static_pages#help'
@@ -34,7 +35,6 @@ Rails.application.routes.draw do
   # get 'logout' => 'sessions#destroy'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
 
   # Defines the root path route ("/")
   # root "articles#index"

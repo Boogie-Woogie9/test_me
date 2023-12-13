@@ -1,70 +1,53 @@
 <div class="col-md-6 col-md-offset-3">
-<h2>Редактировать профиль</h2>
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "mentors/shared/error_messages", resource: resource %>
-
-  <div class="row">
-    <div class="col-sm-6">
-      <%= f.label :"Фамилия" %>
-      <%= f.text_field :surname, autofocus: true, class: 'form-control' %>
+  <h2>Редактировать профиль</h2>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "mentors/shared/error_messages", resource: resource %>
+    <div class="row">
+      <div class="col-sm-6">
+        <%= f.label :"Фамилия" %>
+        <%= f.text_field :surname, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.label :"Имя" %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
     </div>
-    <div class="col-sm-6">
-      <%= f.label :"Имя" %>
-      <%= f.text_field :name, class: 'form-control' %>
+    <div class="row">
+      <div class="col-sm-4">
+        <%= f.label "email (логин)" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+      </div>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+      <div class="col-sm-4">
+        <%= f.label "Пароль" %>
+        <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+        <% if @minimum_password_length %>
+          <em><%= @minimum_password_length %> символов минимум</em>
+        <% end %>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <%= f.label "email (логин)" %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+    <div class="row">
+      <div class="col-sm-6">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.label :current_password %>
+        <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
+      </div>
     </div>
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+   <div class="row" style="padding-top: 10px;">
+      <div class="col-sm-3"><%= f.submit "Подтвердить", class: "btn btn-outline-success" %></div>
     <% end %>
-    <div class="col-sm-6">
-      <%= f.label "Пароль" %>
-      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
-      <% if @minimum_password_length %>
-      <em><%= @minimum_password_length %> символов минимум</em>
-    <% end %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
-    </div>
-    <div class="col-sm-6">
-      <%= f.label :current_password %>
-      <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
-    </div>
-  </div>
-  <div class="row" style="padding-top: 10px;">
-    <div class="col-sm-3"><%= f.submit "Подтвердить", class: "btn btn-primary" %></div>
-    <div class="col-sm-5"></div>
+    <div class="col-sm-4"><%= link_to "Вернуться", :back, class: "btn btn-outline-primary" %></div>
     <div class="col-sm-4">
-      <%= link_to "Удалить мой аккаунт",
-        destroy_mentor_path(@mentor),
-        method: :delete, 
-        data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" },
-        class: "btn btn-outline-danger" %>
-    </div>
+      <%= button_to "Удалить мой аккаунт", mentor_path(current_mentor), method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
     </div>
   </div>
-  <div class="submit-btn">
-  </div>
-
-
-
-
-    
-
-    
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? 
-
 </div>
-<%= link_to "Bac", :back %>
+<div class="submit-btn">
+</div>
+<%= link_to "Вернуться", :back %>
+</div>
