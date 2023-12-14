@@ -1,0 +1,20 @@
+    
+<h1><%= controller_name.capitalize %> List</h1>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @<%= controller_name.singularize.downcase %>s.each do |<%= controller_name.singularize.downcase %>| %>
+    <tr>
+      <td><%= <%= controller_name.singularize.downcase %>.id %></td>
+      <td><%= <%= controller_name.singularize.downcase %>.name %></td>
+      <td><%= <%= controller_name.singularize.downcase %>.description %></td>
+    </tr>
+  <% end %>
+</tbody>
+</table>

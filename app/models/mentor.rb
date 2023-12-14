@@ -7,6 +7,7 @@ class Mentor < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_and_belongs_to_many :groups
+  has_many :tests
   attr_accessor :remember_token
 
   before_save { self.email = email.downcase }
@@ -17,7 +18,5 @@ class Mentor < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
 
-  # has_secure_password
   validates :password, length: { minimum: 8 }
-  # validates :groups, presence: true
 end

@@ -1,0 +1,12 @@
+<h1>Create New Question</h1>
+<%= form_for [@test, @question] do |f| %>
+
+  <%= f.label :content %>
+  <%= f.text_field :content %>
+  
+  <%= f.fields_for :answers do |a| %>
+    <%= a.label :content %>
+    <%= a.text_field :content %>
+  <% end %>
+  <%= f.submit %>
+<% end %>
