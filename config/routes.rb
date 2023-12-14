@@ -21,12 +21,15 @@ Rails.application.routes.draw do
   get 'about' => 'static_pages#about'
   get 'choice' => 'static_pages#choice'
 
+  get 'new' => 'tests#new'
+
   resources :students
   get 'signup' => 'students#new'
 
   resources :mentors
   get 'signup' => 'mentors#new'
 
+  get 'edit' => 'tests#edit'
   resources :tests do
     resources :questions
   end

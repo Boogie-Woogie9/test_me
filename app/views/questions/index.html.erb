@@ -9,11 +9,11 @@
     </tr>
   </thead>
   <tbody>
-    <% @<%= controller_name.singularize.downcase %>s.each do |<%= controller_name.singularize.downcase %>| %>
+    <% @questions.each do |t| %>
     <tr>
-      <td><%= <%= controller_name.singularize.downcase %>.id %></td>
-      <td><%= <%= controller_name.singularize.downcase %>.name %></td>
-      <td><%= <%= controller_name.singularize.downcase %>.description %></td>
+      <td><%= question.id %></td>
+      <td><%= question.name %></td>
+      <td><%= question.description %></td>
     </tr>
   <% end %>
 </tbody>

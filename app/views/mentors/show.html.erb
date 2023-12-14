@@ -1,1 +1,11 @@
-<%= @mentor.name%>, <%= @mentor.email%>
+<div class="row">
+  <div class="col-sm-2">
+    <%= link_to "Мои тесты", tests_path, class: "btn btn-outline-dark"%>
+  </div>
+  <div class="col-sm-2">
+    <%= link_to "Учебные группы", "#", class: "btn btn-outline-dark"%>
+  </div>
+  <div class="col-sm-2">
+    <%= link_to "Статистика", "#", class: "btn btn-outline-dark"%>
+  </div>
+</div>

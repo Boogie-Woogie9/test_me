@@ -1,19 +1,21 @@
-<h1><%= controller_name.capitalize %> List</h1>
+<h1>Мои тесты</h1>
 <table>
   <thead>
     <tr>
-      <th>ID</th>
+      <th>№</th>
       <th>Name</th>
       <th>Description</th>
     </tr>
   </thead>
   <tbody>
-    <% @<%= controller_name.singularize.downcase %>s.each do |<%= controller_name.singularize.downcase %>| %>
+    <% @tests.each do |t| %>
     <tr>
-      <td><%= <%= controller_name.singularize.downcase %>.id %></td>
-      <td><%= <%= controller_name.singularize.downcase %>.name %></td>
-      <td><%= <%= controller_name.singularize.downcase %>.description %></td>
+      <td><%= t.id %></td>
+      <td><%= t.name %></td>
+      <td><%= t.description %></td>
+      <td><%= link_to 'Редактировать', edit_path %></td>
     </tr>
   <% end %>
 </tbody>
 </table>
+<%= link_to "Создать тест", new_path%>

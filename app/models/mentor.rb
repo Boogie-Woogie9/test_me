@@ -8,7 +8,7 @@ class Mentor < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_and_belongs_to_many :groups
   has_many :tests
-  attr_accessor :remember_token
+  # attr_accessor :remember_token
 
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: { maximum: 50 }

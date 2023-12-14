@@ -6,6 +6,7 @@ class CreateTests < ActiveRecord::Migration[7.0]
     create_table :tests do |t|
       t.string :name            # название теста
       t.text :description       # описание темы и заданий теста
+      t.belongs_to :mentor
       t.timestamps
     end
   end

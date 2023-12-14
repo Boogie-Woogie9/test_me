@@ -3,17 +3,30 @@
 # контроллер для прохождения тестов
 class TestsController < ApplicationController
   def new
-    @test = Test.new
+    @test = current_mentor.tests.build
   end
 
   def create
-    @test = Test.new(test_params)
+    @test = current_mentor.tests.build(test_params)
     if @test.save
       flash[:success] = 'Object successfully created'
       redirect_to tests_path
     else
       flash[:error] = 'Something went wrong'
       render 'new'
+    end
+  end
+
+  def edit
+    @test = Test.find(params[:id])
+  end
+
+  def update
+    @test = Test.find(params[:id])
+    if @test.update(test_params)
+      redirect_to tests_path, notice: 'Test was successfully updated'
+    else
+      render 'edit'
     end
   end
 
