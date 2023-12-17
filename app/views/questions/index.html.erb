@@ -1,20 +1,14 @@
-    
-<h1><%= controller_name.capitalize %> List</h1>
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @questions.each do |t| %>
-    <tr>
-      <td><%= question.id %></td>
-      <td><%= question.name %></td>
-      <td><%= question.description %></td>
-    </tr>
+<p style="color: green"><%= notice %></p>
+
+<h1>Questions</h1>
+
+<div id="questions">
+  <% @questions.each do |question| %>
+    <%= render question %>
+    <p>
+      <%= link_to "Show this question", question %>
+    </p>
   <% end %>
-</tbody>
-</table>
+</div>
+
+<%= link_to "New question", new_question_path %>

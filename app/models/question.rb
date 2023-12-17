@@ -1,9 +1,6 @@
-# frozen_string_literal: true
-
-# модель вопроса (задания) в тесте
 class Question < ApplicationRecord
-  belongs_to :test, optional: true
-  has_many :answers, dependent: :destroy
+  belongs_to :quiz
+  validates :correct_answer, inclusion: { in: 1..4 }
 
-  accepts_nested_attributes_for :answers, reject_if: :all_blank, allow_destroy: true
+  has_one_attached :image
 end

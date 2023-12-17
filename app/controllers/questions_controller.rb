@@ -1,57 +1,70 @@
-# frozen_string_literal: true
-
-# контроллер для ответов в тестах
 class QuestionsController < ApplicationController
-  before_action :set_test
-  before_action :set_question, only: %i[show edit update destroy]
+  before_action :set_question, only: %i[ show edit update destroy ]
 
+  # GET /questions or /questions.json
   def index
-    @questions = @test.questions
+    @questions = Question.all
   end
 
-  def show; end
+  # GET /questions/1 or /questions/1.json
+  def show
+  end
 
+  # GET /questions/new
   def new
-    @question = @test.questions.build
-    3.times { @question.answers.build }
+    @question = Question.new
   end
 
-  def edit; end
+  # GET /questions/1/edit
+  def edit
+  end
 
+  # POST /questions or /questions.json
   def create
-    @question = @test.questions.build(question_params)
+    @question = Question.new(question_params)
 
-    if @question.save
-      redirect_to test_questions_path(@test)
-    else
-      render 'new'
+    respond_to do |format|
+      if @question.save
+        format.html { redirect_to question_url(@question), notice: "Question was successfully created." }
+        format.json { render :show, status: :created, location: @question }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @question.errors, status: :unprocessable_entity }
+      end
     end
   end
 
+  # PATCH/PUT /questions/1 or /questions/1.json
   def update
-    if @question.update(question_params)
-      redirect_to test_question_path(@test, @question)
-    else
-      render 'edit'
+    respond_to do |format|
+      if @question.update(question_params)
+        format.html { redirect_to question_url(@question), notice: "Question was successfully updated." }
+        format.json { render :show, status: :ok, location: @question }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @question.errors, status: :unprocessable_entity }
+      end
     end
   end
 
+  # DELETE /questions/1 or /questions/1.json
   def destroy
     @question.destroy
-    redirect_to test_questions_path(@test)
+
+    respond_to do |format|
+      format.html { redirect_to questions_url, notice: "Question was successfully destroyed." }
+      format.json { head :no_content }
+    end
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_question
+      @question = Question.find(params[:id])
+    end
 
-  def set_test
-    @test = Test.find(params[:test_id])
-  end
-
-  def set_question
-    @question = @test.questions.find(params[:id])
-  end
-
-  def question_params
-    params.require(:question).permit(:content, answers_attributes: %i[id content _destroy])
-  end
+    # Only allow a list of trusted parameters through.
+    def question_params
+      params.require(:question).permit(:quiz_id, :content, :answer1, :answer2, :answer3, :answer4, :correct_answer)
+    end
 end

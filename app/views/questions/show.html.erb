@@ -1,11 +1,10 @@
-<h1>questions#show</h1>
-<p>Find me in app/views/tests/show.html.erb</p>
-<h1><%= controller_name.capitalize %> Details</h1>
+<p style="color: green"><%= notice %></p>
+
+<%= render @question %>
+
 <div>
-  <strong>Name:</strong>
-  <%= @<%= controller_name.singularize.downcase %>.name %>
-</div>
-<div>
-  <strong>Description:</strong>
-  <%= @<%= controller_name.singularize.downcase %>.description %>
+  <%= link_to "Edit this question", edit_question_path(@question) %> |
+  <%= link_to "Back to questions", questions_path %>
+
+  <%= button_to "Destroy this question", @question, method: :delete %>
 </div>
