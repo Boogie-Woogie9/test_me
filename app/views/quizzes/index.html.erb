@@ -1,14 +1,11 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Quizzes</h1>
-
+<h1>Мои тесты</h1>
 <div id="quizzes">
   <% @quizzes.each do |quiz| %>
     <%= render quiz %>
     <p>
-      <%= link_to "Show this quiz", quiz %>
+      <%= link_to "Открыть", quiz %>
     </p>
   <% end %>
 </div>
-
-<%= link_to "New quiz", new_quiz_path %>
+<%= link_to "Новый тест", new_quiz_path %>

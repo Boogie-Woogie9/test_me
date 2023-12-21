@@ -1,11 +1,11 @@
 <div id="<%= dom_id question %>">
   <p>
-    <strong>Quiz:</strong>
+    <strong>Тест</strong>
     <%= question.quiz_id %>
   </p>
-  <% if question.image.attached? %>
-    <%= image_tag question.image, class: "img-fluid" %>
-  <% end %>
+  <%# if question.image.attached? %>
+    <%# image_tag question.image, class: "img-fluid" %>
+  <%# end %>
   <p>
     <strong>Content:</strong>
     <%= question.content %>
