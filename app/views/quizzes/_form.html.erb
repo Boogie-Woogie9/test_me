@@ -1,17 +1,19 @@
-<%= form_with(model: quiz, local: true, data: { 
-  controller: "nested-form", nested_form_wrapper_selector_value: ".nested-form-wrapper" 
-  }) do |form| %>
-  <template data-nested-form-target="template">
-    <%= form.fields_for :questions, Question.new, child_index: "NEW_RECORD" do |question_fields| %>
-      <%= render "question_fields", f: question_fields %>
+<div id="errors"></div>
+<%= simple_form_for(@quiz) do |f| %>
+  <%= f.label :title, 'Наименование' %>
+  <%= f.text_field :title, class: "form-control mb-3"%>
+  <div id="questions">
+    <%= f.fields_for :questions, Question.new do |question_fileds| %>
+      <%= render "question_fields", f: question_fileds %>
     <% end %>
-  </template>
-  <%= form.fields_for :questions do |question_fields| %>
-    <%= render "question_fields", f: question_fields %>
-  <% end %>
-  <div data-nested-form-target="target"></div>
-  <button type="button" data-action="nested-form#add">Add Question</button>
-  <div class="actions">
-    <%= form.submit class: "btn btn-primary" %>
+    <%# f.fields_for :questions do |question_fields| %>
+      <%# render "question_fields", f: question_fields %>
+    <%# end %>
+    <div class="links">
+      <%= link_to_add_association "Добавить вопрос", f, :questions, class: 'brn btn-primary' %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.submit class: "btn btn-outline-success" %>
   </div>
 <% end %>

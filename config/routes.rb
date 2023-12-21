@@ -36,6 +36,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
 
   get 'quiz_submissions/create'
   get 'quiz_submissions/show'
+  # get 'quizzes/add_question'
 
   resources :quizzes do
     resources :questions

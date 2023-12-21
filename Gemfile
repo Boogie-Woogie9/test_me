@@ -78,3 +78,6 @@ gem 'rails-i18n'
 gem "devise", "~> 4.9"
 gem 'foreman', github: 'ddollar/foreman'
 gem 'i18n'
+gem 'cocoon'
+
+gem "simple_form", "~> 5.3"

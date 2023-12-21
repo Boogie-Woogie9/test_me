@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: %i[ show edit update destroy ]
+  before_action :set_question, only: %i[show edit update destroy]
 
   # GET /questions or /questions.json
   def index
@@ -21,8 +21,6 @@ class QuestionsController < ApplicationController
 
   # POST /questions or /questions.json
   def create
-    @question = Question.new(question_params)
-
     respond_to do |format|
       if @question.save
         format.html { redirect_to question_url(@question), notice: "Question was successfully created." }
@@ -52,7 +50,7 @@ class QuestionsController < ApplicationController
     @question.destroy
 
     respond_to do |format|
-      format.html { redirect_to questions_url, notice: "Question was successfully destroyed." }
+      format.html { redirect_to questions_url, notice: 'Question was successfully destroyed' }
       format.json { head :no_content }
     end
   end
@@ -65,6 +63,14 @@ class QuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def question_params
-      params.require(:question).permit(:quiz_id, :content, :answer1, :answer2, :answer3, :answer4, :correct_answer)
+      params.require(:question).permit(
+        :quiz_id, 
+        :content, 
+        :answer1, 
+        :answer2, 
+        :answer3, 
+        :answer4, 
+        :correct_answer
+      )
     end
 end

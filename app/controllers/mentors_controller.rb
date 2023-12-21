@@ -19,7 +19,6 @@ class MentorsController < ApplicationController
   def create
     @mentor = Mentor.new(mentor_params)
     if @mentor.save
-      flash[:success] = 'Добро пожаловать в TestMe :)!'
       redirect_to @mentor
     else
       render 'new'

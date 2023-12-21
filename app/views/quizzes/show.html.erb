@@ -5,9 +5,9 @@
       <div class="card-body">
         <h5 class="card-title">Question <%= index + 1 %>:</h5>
         <p class="card-text"><%= question.content %></p>
-        <% if question.image.attached? %>
-          <%= image_tag question.image, class: "img-fluid mb-3" %>
-        <% end %>
+        <%# if question.image.attached? %>
+          <%# image_tag question.image, class: "img-fluid mb-3" %>
+        <%# end %>
         <% 1.upto(4) do |answer_index| %>
           <div class="form-check">
             <%= form.radio_button "question_#{question.id}", answer_index, class: "form-check-input" %>

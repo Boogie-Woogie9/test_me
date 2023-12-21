@@ -23,7 +23,7 @@ class QuizSubmissionsController < ApplicationController
     end
 
     score = (correct_answers.to_f / @quiz.questions.count) * 100
-    @quiz_submission = QuizSubmission.create(quiz: @quiz, user: current_mentor, score:, user_answers:)
+    @quiz_submission = QuizSubmission.create(quiz: @quiz, user: current_student, score:, user_answers:)
 
     redirect_to quiz_submission_path(@quiz, @quiz_submission)
   end
