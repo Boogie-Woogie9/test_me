@@ -81,3 +81,6 @@ gem 'i18n'
 gem 'cocoon'
 
 gem "simple_form", "~> 5.3"
+
+gem 'will_paginate-bootstrap-style'
+gem "will_paginate", "~> 4.0"

@@ -31,13 +31,27 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-6">
-          <div class="submit-btn">
+        <div class="col-sm-4 centerd" >
+          <div class="centerd">
             <%= f.submit "Создать аккаунт", class: "btn btn-primary" %>
           </div>
         <% end %>
-        </div>
-        <%= render "mentors/shared/links" %>
+      </div>
+      <div class="col-sm-4 centerd">
+        <%= link_to "Вернуться", :back, class: "btn btn-outline-primary" %>
+      </div>
+      <div class="col-sm-4 centerd">
+        <%= link_to "Войти", mentor_session_path, class: "btn btn-outline-primary" %>
+      </div>
     </div>
   </div>
 </div>
+</div>
+<style>
+  .centerd{
+     display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 10px;
+  }
+</style>

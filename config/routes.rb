@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
-  # get 'tests/index'
-  # get 'tests/show'
-
-  devise_for :mentors, controllers: {
+   devise_for :mentors, controllers: {
     sessions: 'mentors/sessions',
     registrations: 'mentors/registrations'
   }
@@ -21,7 +18,8 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   get 'about' => 'static_pages#about'
   get 'choice' => 'static_pages#choice'
 
-  # get 'new' => 'tests#new'
+  post 'submit_form'=> 'groups#submit_form'
+  post 'submit_group' => 'groups#submit_group'
 
   resources :students
   get 'signup' => 'students#new'
@@ -29,18 +27,15 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   resources :mentors
   get 'signup' => 'mentors#new'
 
-  # get 'edit' => 'tests#edit'
-  # resources :tests do
-  #   resources :questions
-  # end
+  resources :groups
+
+  get 'group_destroy' => 'groups#destroy'
 
   get 'quiz_submissions/create'
   get 'quiz_submissions/show'
-  # get 'quizzes/add_question'
 
   resources :quizzes do
     resources :questions
-    # post 'submit', to: 'quiz_submissions#create'
     resources :quiz_submissions, only: [:show, :create], as: 'submissions'
   end
 

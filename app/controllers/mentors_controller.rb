@@ -11,7 +11,7 @@ class MentorsController < ApplicationController
   end
 
   def destroy
-    redirect_to root_path, notice: 'Ваш аккаунт успешно удален.'
+    redirect_to root_path, notice: 'Ваш аккаунт успешно удален'
     @mentor = Mentor.find(params[:id])
     @mentor.destroy
   end
@@ -25,6 +25,10 @@ class MentorsController < ApplicationController
     end
   end
 
+  def add_group
+    @mentor = Mentor.find(params[:id])
+
+  end
   private
 
   def mentor_params
@@ -36,4 +40,6 @@ class MentorsController < ApplicationController
       :password_confirmation
     )
   end
+
+
 end

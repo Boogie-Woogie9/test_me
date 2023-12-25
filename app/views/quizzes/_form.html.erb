@@ -15,5 +15,7 @@
   <% end %>
   <div data-nested-form-target="target"></div>
   <button type="button" data-action="nested-form#add">Добавить</button>
-  <%= f.submit 'Создать тест', class: 'btn btn-outline-success'%>
+  <%# f.hidden_field :mentor_id %>
+  <%= f.hidden_field :mentor_id, value: current_mentor.id %>
+  <%= f.submit 'Подтвердить', class: 'btn btn-outline-success'%>
 <% end %>

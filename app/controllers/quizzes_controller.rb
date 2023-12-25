@@ -22,6 +22,8 @@ class QuizzesController < ApplicationController
 
   # POST /quizzes or /quizzes.json
   def create
+    # create_params = quiz_params
+    # create_params[:mentor_id] = current_mentor.id
     @quiz = Quiz.new(quiz_params)
 
     respond_to do |format|
@@ -58,22 +60,6 @@ class QuizzesController < ApplicationController
     end
   end
 
-  # def add_question
-  #   values = quiz_params
-  #   :questions_attributes.each do |t|
-  #     puts t
-  #   end
-  #   old_question = Question.new(:questions_attributes)
-  #   quiz = Quiz.find_by(title: values[:title])
-  #   old_question.quiz_id = quiz.id
-  #   unless old_question.save?
-  #     @errors = old_question.errors.map(&:message)
-  #     render turbo_stream: turbo_stream.update('errors', partial: 'errors')
-  #   else
-  #     render turbo_stream: turbo_stream.update("form", partial: 'form')
-  #   end
-  # end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz
@@ -82,8 +68,8 @@ class QuizzesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def quiz_params
-      params.require(:quiz).permit(:title, questions_attributes: [
-          :id,  
+      params.require(:quiz).permit(:title, :mentor_id, questions_attributes: [
+          :id,
           :content, 
           :answer1, 
           :answer2, 

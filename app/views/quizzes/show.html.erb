@@ -5,24 +5,23 @@
       <div class="card-body">
         <h5 class="card-title">Question <%= index + 1 %>:</h5>
         <p class="card-text"><%= question.content %></p>
-        <%# if question.image.attached? %>
-        <%# image_tag question.image, class: "img-fluid mb-3" %>
-        <%# end %>
         <% 1.upto(4) do |answer_index| %>
           <div class="form-check">
-            <%= form.radio_button "Вопрос_#{question.id}", answer_index, class: "form-check-input" %>
+            <%= form.radio_button "question_#{question.id}", answer_index, class: "form-check-input" %>
             <%= form.label "question_#{question.id}_#{answer_index}", question.send("answer#{answer_index}"), class: "form-check-label" %>
           </div>
         <% end %>
       </div>
     </div>
   <% end %>
-  <div class="text-center">
-    <%= form.submit "Submit Quiz", class: "btn btn-primary" %>
-  </div>
+  <% if student_signed_in? %>
+    <div class="text-center">
+      <%= form.submit "Завершить", class: "btn btn-primary" %>
+    <div>
+    <% else %>
+      <%= link_to "Редактировать", edit_quiz_path(@quiz) %>
+      <%= link_to "Вернуться к тестам", quizzes_path %>
+      <%= button_to "Удалить", @quiz, method: :delete %>
+    </div>
+  <% end %>
 <% end %>
-<div>
-  <%= link_to "Редактировать", edit_quiz_path(@quiz) %> |
-  <%= link_to "Вернуться к тестам", quizzes_path %>
-  <%= button_to "Удалить", @quiz, method: :delete %>
-</div>

@@ -1,5 +1,81 @@
-<%= @student.name%>, <%= @student.email%>
-
-Досneпные тесты
-+
-render tests
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Доступные тесты</h1>
+  </div>
+  <div class="col-sm-6">
+    <h1>Моя группа</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div id="quiz_table">
+      <table class="table table-striped table-hover table-bordered">
+        <tr>
+          <td>Тема</td>
+          <td>Ссылка</td>
+          <td>Статус</td>
+        </tr>
+        <tr>
+          <%# if !@quizzes.nil? %>
+          <% @available_quizzes.each do |quiz| %>
+            <td><%= quiz.title%> </td>
+            <td><%= link_to 'Пройти тест', "/quizzes/#{quiz.id}" %></td>
+            <td>
+              <%# if %>
+            </td>
+          </tr>
+        <% end %>
+        <%# end %>
+      </table>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div id="my_group_table">
+      <table class="table table-striped table-hover table-bordered">
+        <tr>
+          <td>№</td>
+          <td>Фамилия</td>
+          <td>Имя</td>
+        </tr>
+        <tr>
+          <% @classmates.each_with_index do |classsmate, index| %>
+            <td><%= index + 1%> </td>
+            <td><%= classsmate.surname %> </td>
+            <td><%= classsmate.name %> </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <h2>Успеваемость</h2>
+</div>
+<div class="row">
+  <div id="my_group_table">
+    <table class="table table-striped table-hover table-bordered">
+      <tr>
+        <td>№</td>
+        <td>Тема</td>
+        <td>Имя</td>
+      </tr>
+      <tr>
+        <% @attempts.each_with_index do |attempts, index| %>
+          <td><%= index + 1%> </td>
+          <td><%= Quiz.find_by(id: attempts.quiz_id).title %> </td>
+          <td><%= attempts.score %> </td>
+        </tr>
+      <% end %>
+    </table>
+    <br />
+  </div>
+</div>
+</div>
+<style>
+  .low{
+    padding-bottom: 20px;
+  }
+  .table{
+    text-align: center;
+  }
+</style>

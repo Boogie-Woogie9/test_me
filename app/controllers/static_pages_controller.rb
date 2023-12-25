@@ -13,4 +13,7 @@ class StaticPagesController < ApplicationController
 
   def choice
   end
+
+  def groups
+  end
 end

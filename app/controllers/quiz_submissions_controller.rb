@@ -8,7 +8,7 @@ class QuizSubmissionsController < ApplicationController
   def create
     @quiz = Quiz.find(params[:quiz_id])
 
-    user_answers = {}
+    student_answers = {}
     correct_answers = 0
 
     params.each do |key, value|
@@ -16,14 +16,14 @@ class QuizSubmissionsController < ApplicationController
 
       question_id = key.split('_').last.to_i
       selected_answer = value.to_i
-      user_answers[question_id.to_s] = selected_answer
+      student_answers[question_id.to_s] = selected_answer
       question = Question.find(question_id)
 
       correct_answers += 1 if question.correct_answer == selected_answer
     end
 
     score = (correct_answers.to_f / @quiz.questions.count) * 100
-    @quiz_submission = QuizSubmission.create(quiz: @quiz, user: current_student, score:, user_answers:)
+    @quiz_submission = QuizSubmission.create(quiz: @quiz, student: current_student, score:, student_answers:)
 
     redirect_to quiz_submission_path(@quiz, @quiz_submission)
   end
@@ -35,6 +35,6 @@ class QuizSubmissionsController < ApplicationController
   end
 
   def quiz_submission_params
-    params.require(:quiz_submission).permit(:quiz_id, :user_id, :score, user_answers: {})
+    params.require(:quiz_submission).permit(:quiz_id, :student_id, :score, student_answers: {})
   end
 end

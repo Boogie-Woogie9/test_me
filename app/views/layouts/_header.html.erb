@@ -1,9 +1,11 @@
 <header class="navbar fixed-top navbar-expand-lg navbar-inverse">
-  <div class="container">
-    <%= link_to "test_me", root_path, id: "logo" %>
+  <div class="container header">
+    <%= link_to "ским | система контроля знаний", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Домой", root_path %></li>
+        <% if (!student_signed_in? && !mentor_signed_in?) %>
+          <li><%= link_to "Домой", root_path %></li>
+        <% end %>
         <li><%= link_to "Q&A", help_path %></li>
         <% if student_signed_in? %>
           <li class="dropdown">

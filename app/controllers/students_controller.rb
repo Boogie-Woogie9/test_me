@@ -4,6 +4,11 @@
 class StudentsController < ApplicationController
   def show
     @student = Student.find(params[:id])
+    appropriate_group = Group.find(@student.group_id)
+    @available_quizzes = Quiz.joins(mentor: { groups_mentors: :group })
+    .where(groups: { id: @student.group.id })
+    @classmates = Student.where(group_id: @student.group_id)
+    @attempts = QuizSubmission.where(student_id: params[:id])
   end
 
   def new
@@ -39,11 +44,3 @@ class StudentsController < ApplicationController
     )
   end
 end
-# "surname"=>"Евсеенков",
-#    "name"=>"Иван",
-#    "patronymic"=>"Александрович",
-#    "email"=>"evseenkov.2003@mail.ru",
-#    "password"=>"[FILTERED]",
-#    "password_confirmation"=>"[FILTERED]",
-#    "type_user"=>"0",
-#    "group"=>"ИУ6-53Б"}

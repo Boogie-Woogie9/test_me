@@ -1,8 +1,26 @@
 <div class="row">
-  <div class="col-sm-6"></div>
-  <div class="col-sm-6"></div>
+  <div class="col-sm-6 ">
+    <%= image_tag "cafe.jpg", height: 250, class: "img" %>
+  </div>
+  <div class="col-sm-6">
+    <%= image_tag "library.jpg", height: 250, class: "img"%>
+  </div>
 </div>
-<div class="row">
+<div class="row center">
   <div class="col-sm-6 student_btn"><%= link_to "Студент", new_student_registration_path, class: "btn btn-primary" %></div>
   <div class="col-sm-6 mentor_btn"><%= link_to "Преподаватель", new_mentor_registration_path, class: "btn btn-primary" %></div>
 </div>
+
+<style>
+  .img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  }
+  .center {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 10px;
+  }
+</style>

@@ -56,7 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_08_165129) do
     t.bigint "student_id", null: false
     t.bigint "quiz_id", null: false
     t.float "score"
-    t.json "user_answers"
+    t.json "student_answers"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["quiz_id"], name: "index_quiz_submissions_on_quiz_id"
@@ -65,8 +65,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_08_165129) do
 
   create_table "quizzes", force: :cascade do |t|
     t.string "title"
+    t.bigint "mentor_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["mentor_id"], name: "index_quizzes_on_mentor_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -88,4 +90,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_08_165129) do
   add_foreign_key "questions", "quizzes"
   add_foreign_key "quiz_submissions", "quizzes"
   add_foreign_key "quiz_submissions", "students"
+  add_foreign_key "quizzes", "mentors"
 end

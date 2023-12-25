@@ -35,9 +35,20 @@
         </div>
       </div>
 
-      <div class="submit-btn">
+      <div class="col-sm-4 dr">
         <%= f.submit "Создать аккаунт", class: "btn btn-primary" %>
+      </div>
+      <div class="col-sm-4 dr">
+        <%= link_to "Вернуться", :back, class: "btn btn-outline-primary" %>
+      </div>
+      <div class="col-sm-4 dr">
+        <%= link_to "Войти", mentor_session_path, class: "btn btn-outline-primary" %>
       </div>
     <% end %>
   </div>
 </div>
+<style>
+  .dr{
+    padding: 10px;
+  }
+</style>

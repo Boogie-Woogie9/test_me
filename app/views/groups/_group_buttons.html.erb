@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col">
+    <%= form_for @group, local: true, url: submit_form_path do |f|%>
+      <%# f.label :group_name, 'Группу' %>
+      <%= f.text_field :group_name, class: 'form-control mb-3', placeholder: 'название группы' %>
+    </div>
+    <div class="col-4">
+      <%= f.submit 'Добавить', class: 'btn btn-outline-success'%>
+    <% end %>
+  </div>
+</div>

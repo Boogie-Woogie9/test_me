@@ -26,8 +26,15 @@
         <%= f.label :group, "Введите номер группы" %> 
         <%= f.text_field :group %>
       </div>
-
-      <%= f.submit "Создать аккаунт", class: "btn btn-primary" %>
+      <div class="col-sm-4">
+        <%= f.submit "Создать аккаунт", class: "btn btn-primary" %>
+      </div>
+      <div class="col-sm-4">
+        <%= link_to "Вернуться", :back, class: "btn btn-outline-primary" %>
+      </div>
+      <div class="col-sm-4">
+        <%= link_to "Войти", mentor_session_path, class: "btn btn-outline-primary" %>
+      </div>
     <% end %>
   </div>
 </div>

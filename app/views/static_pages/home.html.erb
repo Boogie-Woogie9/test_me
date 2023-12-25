@@ -1,12 +1,12 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb
-домашняя страничка - какое-нибудь интро загрузки и тд...</p>
 <div class="center jumbotron">
-  <h1>Welcome to the Sample App</h1>
-  <h2>
-    This is the home page for the
-    <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
-  </h2>
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+  <h1>Добро пожаловать в СКИМ</h1>
+  <% if (!student_signed_in? && !mentor_signed_in?) %>
+    <h2>
+      Это домашняя страница. чтобы получить доступ к полному функционалу, <br />
+      необходимо зарегистрироваться в системе
+    </h2>
+    <%= link_to "Создать личный кабинет!", choice_path, class: "btn btn-lg btn-primary" %>
+  <% else %>
+    <h2>Чтобы начать работу в системе перейдите в личный кабинет</h2>
+  <% end %>
 </div>
